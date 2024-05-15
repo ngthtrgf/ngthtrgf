@@ -1,0 +1,251 @@
+<style type="text/css">
+	body {
+		background-image: url(images/04.jpg);
+		background-repeat: no-repeat;
+		background-size: 100% 650px;
+		;
+		margin: 0px 0px 0px 0px;
+		opacity: 0.9;
+	}
+
+	/* 标题的样式 */
+	h1:first-child {
+		text-align: center;
+		color: #ff5500;
+		font-weight: 500;
+	}
+
+	/* 账户输入框与密码输入框 */
+	.UserInput {
+
+		width: 200px;
+		display: block;
+		transition: 1s;
+		margin: 20px auto;
+		padding: 7px 12px;
+		border-radius: 24px;
+		border: 2px solid #336699;
+	}
+
+	/* 给输入框添加动画效果 */
+	.UserInput:focus {
+		width: 280px;
+		border: #00FFFF;
+	}
+
+	/* 修改提交按钮的样式 */
+	.box input[type="submit"] {
+		width: 80px;
+		height: 40px;
+		padding: 6px;
+		transition: 1s;
+		display: block;
+		/* margin: 30px 60px; */
+		margin-right: 20px;
+		border-radius: 10px;
+		border: 2px solid #336699;
+		background-color: blue;
+		color: aliceblue;
+	}
+
+	.box input[type="reset"] {
+		width: 80px;
+		height: 40px;
+		padding: 6px;
+		transition: 1s;
+		display: block;
+		/* margin: -60px 200px; */
+		border-radius: 10px;
+		border: 2px solid #336699;
+		background-color: rgb(51, 255, 0);
+	}
+
+	/* 给按钮一个动画效果 */
+	#tijiao:hover {
+		border: 2px solid #FF0000;
+		border-radius: 60px;
+	}
+
+	.main {
+		width: 100%;
+		margin-left: auto 0px;
+		margin-right: auto 0px;
+		position: relative;
+		border-bottom-width: 2px;
+		border-bottom-color: #CCC;
+		border-bottom-style: solid;
+	}
+
+	.header {
+		width: 100%;
+		height: 70px;
+		padding-top: 0px;
+		border-bottom: #CCC solid 2px;
+		margin-top: 0px;
+		background-color: #FFF;
+		z-index: 5;
+	}
+
+	.title {
+		width: 600px;
+		height: 70px;
+		float: left;
+		clear: both;
+		margin-left: 30px;
+		padding-top: 0px;
+		padding-left: 30px;
+		padding-bottom: 0px;
+		margin-top: 0px;
+		opacity: 1;
+	}
+
+	.title-1 {
+		letter-spacing: 5px;
+		font-size: 30px;
+		line-height: 70px;
+		text-align: center;
+		opacity: 1;
+	}
+
+	.mid {
+		width: 100%;
+		height: 600px;
+		z-index: 1;
+	}
+
+	.login {
+		width: 360px;
+		height: 330px;
+		margin-right: 200px;
+		margin-top: 90px;
+		float: right;
+		clear: both;
+		border: #CCC solid 1px;
+		background-color: white;
+		z-index: 6;
+	}
+
+	.login-1 {
+		position: absolute;
+		margin-left: 62px;
+		margin-top: 68px;
+	}
+
+	.login-2 {
+		position: absolute;
+		margin-left: 46px;
+		margin-top: 105px;
+	}
+
+	.login-3 {
+		position: absolute;
+		margin-left: 50px;
+		margin-top: 145px;
+	}
+
+	.bt {
+		width: 170px;
+		height: 45px;
+		font-size: 24px;
+		text-align: center;
+		color: #FFF;
+		background-color: #09F;
+		letter-spacing: 10px;
+		margin-top: 240px;
+		margin-left: 110px;
+		border: 2px solid #CCC;
+		border-radius: 5px;
+	}
+
+	.register {
+		margin-left: 300px;
+		text-decoration: none;
+	}
+
+	.register:hover {
+		color: #09F;
+	}
+
+	.confirm {
+		position: absolute;
+		top: 343px;
+		right: 235px;
+	}
+
+	.confirm img {
+		width: 134px;
+		height: 40px;
+		vertical-align: middle;
+	}
+
+	div#bottom-bar {
+		display: flex;
+		width: 100%;
+		margin: auto;
+		margin-top: 0px;
+		justify-content: center;
+		background-color: white;
+		position: absolute;
+		top: 650px;
+	}
+
+	div#nav4 {
+		width: 30%;
+		height: 100%;
+		float: left;
+		flex-shrink: 0;
+	}
+
+	ul.box4 {
+		font-size: 16px;
+		text-align: center;
+	}
+
+	ul.box4 li {
+		width: 80px;
+		display: inline-block;
+		text-align: center;
+		margin-top: 8%;
+	}
+
+	div#copyright {
+		width: 40%;
+		height: 100%;
+		float: left;
+		flex-shrink: 0;
+	}
+
+	div#nav5 {
+		width: 30%;
+		height: 100%;
+		float: left;
+		flex-shrink: 0;
+	}
+
+	ul.box5 {
+		text-align: center;
+	}
+
+	ul.box5 li {
+		width: 80px;
+		display: inline-block;
+		text-align: center;
+		align-items: center;
+		font-size: 13px;
+		margin-top: 8%;
+	}
+
+	.buttonx {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		margin-top: 30px;
+	}
+	.toRegister{
+		float: right;
+		margin-right: 10px;
+		text-decoration: none;
+		font-size: large;
+	}
+</style>
