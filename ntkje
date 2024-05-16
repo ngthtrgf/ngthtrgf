@@ -1,0 +1,34 @@
+  position: relative;
+			  top: -134px;
+			  left: -40px;
+			  transition: all 0.3s;
+			}
+			.game_inner__left .center .characters .enemy.run {
+			  opacity: 0;
+			}
+			.game_inner__left .center .characters .enemy,
+			.game_inner__left .center .characters .player {
+			  width: 50%;
+			  float: left;
+			}
+			.game_inner__left .center .enemy {
+			  width: 100px;
+			}
+			.game_inner__left .center .enemy_hit, .game_inner__left .center .enemy_gold, .game_inner__left .center .enemy_xp {
+			  position: absolute;
+			  left: 98px;
+			  top: 40px;
+			  z-index: 1;
+			  opacity: 0;
+			}
+			.game_inner__left .center .enemy_hit.pressed, .game_inner__left .center .enemy_gold.pressed, .game_inner__left .center .enemy_xp.pressed {
+			  -webkit-animation: hit 0.15s forwards;
+			          animation: hit 0.15s forwards;
+			}
+			.game_inner__left .center .enemy_gold.killed {
+			  -webkit-animation: hit 0.3s 0.1s forwards;
+			          animation: hit 0.3s 0.1s forwards;
+			}
+			.game_inner__left .center .enemy_xp {
+			  left: 0;
+			  right: 0;
