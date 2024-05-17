@@ -1,0 +1,48 @@
+ setTimeout(function () {
+		            _this.canAttack = true;
+		            _this.enemyKilled = false;
+		          }, 800);
+		        }
+		      }
+		    },
+		
+		    toggleBg() {
+		      if (this.muteBg == false) {
+		        audioNode.volume = 0;
+		        this.muteBg = true;
+		      } else {
+		        audioNode.volume = 1;
+		        this.muteBg = false;
+		      }
+		    },
+		    toggleSFX() {
+		      this.sfx = !this.sfx;
+		    },
+		
+		    buy(upgrade, type, stat) {
+		      if (type == "stat") {
+		        let u = this.upgrades[upgrade];
+		        u.level++;
+		
+		        this.xp -= u.cost;
+		
+		        if (stat == "strength") {
+		          this.strength += u.increment;
+		          this.damage = this.strength * 1 + this.weaponDamage;
+		        }
+		
+		        if (stat == "speed") {
+		          this.speed += u.increment;
+		        }
+		
+		        if (stat == "intelligence") {
+		          this.intelligence += u.increment;
+		        }
+		
+		        if (stat == "luck") {
+		          this.luck += u.increment;
+		        }
+		
+		        let newCost = u.costIncreasePerLevel * u.level;
+		        u.cost = newCost;
+		      }
