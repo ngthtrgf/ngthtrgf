@@ -1,0 +1,5 @@
+QObject::connect(webView, &QWebEngineView::selectionChanged, [=]() {
+    QString selectedText = webView->selectedText();
+    qDebug() << "Selected text changed to: " << selectedText;
+    // 在这里可以处理选中文本的变化，比如显示到另一个控件，或者保存到剪贴板等操作
+});
