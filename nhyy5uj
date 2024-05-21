@@ -1,0 +1,50 @@
+<template>
+  <div class="my-component">
+    <h1>{{ title }}</h1>
+    <p>{{ content }}</p>
+    <input type="email" v-model="email" @blur="validateEmail" />
+    <input type="password" v-model="password" @blur="validatePassword" />
+    <button @click="submitForm">Submit</button>
+  </div>
+</template>
+
+<script>
+import formValidatorMixin from './formValidator';
+import httpPlugin from './http';
+
+export default {
+  name: 'MyComponent',
+  mixins: [formValidatorMixin],
+  plugins: [httpPlugin],
+  data() {
+    return {
+      title: 'Welcome to MyComponent',
+      content: 'This is a sample component.',
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    submitForm() {
+      this.$http.post('/submit', { email: this.email, password: this.password });
+    },
+    validateEmail() {
+      if (!this.validateEmail(this.email)) {
+        alert('Invalid email');
+      }
+    },
+    validatePassword() {
+      if (!this.validatePassword(this.password)) {
+        alert('Password must be at least 8 characters long');
+      }
+    },
+  },
+};
+</script>
+
+<style>
+.my-component {
+  background-color: #eee;
+  padding: 20px;
+}
+</style>
