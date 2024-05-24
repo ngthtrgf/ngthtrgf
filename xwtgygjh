@@ -1,0 +1,14 @@
+/**
+ * 生成User列表
+ * @return List<User>
+ */
+public static List<User> generateUserList(){
+    List<User> dataList = new ArrayList<>();
+    dataList.add(new User(1, "张 三", "男"));
+    dataList.add(new User(2, "李四 ", "女"));
+    dataList.add(new User(3, "王五", "男"));
+    dataList.add(new User(4, "", "男"));
+    dataList.add(new User(5, "王五", null));
+    dataList.add(new User(3, null, "男"));
+    return dataList;
+}
