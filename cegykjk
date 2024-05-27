@@ -1,0 +1,28 @@
+/*
+    1.当我们需要加载所有用户的时候就向/api/Persons这个路径发生GET请求，添加了
+      [HttpGet]的GetPersons方法就会被调用
+    2.当我们需要加载id=8的用户的时候，向/api/Person/8这个路径发送GET请求，添加
+      了[HttpGet("{id}")]的方法就会被调用
+    ......................
+    ......................
+*/
+ 
+ 
+[Route("api/[controller]")]
+        public class PersonController : ControllerBase
+        {
+            [HttpGet]
+            public IEnumerable<Person> GetPerson();
+ 
+            [HttpGet("{id}")]
+            public Person GetPerson(long id);
+ 
+            [HttpPut("{id}")]
+            public void UpdatePerson(long id,Person person)
+            [HttpPost("{id}")]
+            public void SavePerson(Person person);
+ 
+            [HttpDelete("{id}")]
+            public void DeletePerson(long id);
+ 
+        }
