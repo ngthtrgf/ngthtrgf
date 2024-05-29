@@ -1,0 +1,11 @@
+const WebSocket = require('ws');
+ 
+const wss = new WebSocket.Server({ port: 8080 });
+ 
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log('Received: %s', message);
+    // 可以回复客户端消息
+    ws.send('Hello, client!');
+  });
+});
