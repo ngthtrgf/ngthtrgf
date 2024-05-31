@@ -1,0 +1,18 @@
+describe('测试“减少”相关的方法', () => {
+    test('测试 minusOne 方法', () => {
+      console.log('测试 minusOne ')
+      counter.minusOne()
+      expect(counter.number).toBe(-1)
+    })
+    test('测试 minusTwo 方法', () => {
+      console.log('测试 minusTwo ')
+      counter.minusTwo()
+      expect(counter.number).toBe(-2)
+    })
+  })
+})
+————————————————
+
+                            版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+                        
+原文链接：https://blog.csdn.net/qq_32682301/article/details/136113405
