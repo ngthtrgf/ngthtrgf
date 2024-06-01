@@ -1,0 +1,156 @@
+
+
+    def decreaseSunValue(self, value):
+        self.sun_value -= value
+
+    def increaseSunValue(self, value):
+        self.sun_value += value
+
+    def setCardFrozenTime(self, plant_name):
+        for card in self.card_list:
+            if plant_name_list[card.name_index] == plant_name:
+                card.setFrozenTime(self.current_time)
+                break
+
+    def drawSunValue(self):
+        self.value_image = getSunValueImage(self.sun_value)
+        self.value_rect = self.value_image.get_rect()
+        self.value_rect.x = 21
+        self.value_rect.y = self.rect.bottom - 21
+        
+        self.image.blit(self.value_image, self.value_rect)
+
+    def draw(self, surface):
+        self.drawSunValue()
+        surface.blit(self.image, self.rect)
+        for card in self.card_list:
+            card.draw(surface)
+
+class Panel():
+    def __init__(self, card_list, sun_value):
+        self.loadImages(sun_value)
+        self.selected_cards = []
+        self.selected_num = 0
+        self.setupCards(card_list)
+
+    def loadFrame(self, name):
+        frame = tool.GFX[name]
+        rect = frame.get_rect()
+        frame_rect = (rect.x, rect.y, rect.w, rect.h)
+
+        return tool.get_image(tool.GFX[name], *frame_rect, c.WHITE, 1)
+
+    def loadImages(self, sun_value):
+        self.menu_image = self.loadFrame(c.MENUBAR_BACKGROUND)
+        self.menu_rect = self.menu_image.get_rect()
+        self.menu_rect.x = 0
+        self.menu_rect.y = 0
+
+        self.panel_image = self.loadFrame(c.PANEL_BACKGROUND)
+        self.panel_rect = self.panel_image.get_rect()
+        self.panel_rect.x = 0
+        self.panel_rect.y = PANEL_Y_START
+
+        
+        self.value_image = getSunValueImage(sun_value)
+        self.value_rect = self.value_image.get_rect()
+        self.value_rect.x = 21
+        self.value_rect.y = self.menu_rect.bottom - 21
+
+        self.button_image =  self.loadFrame(c.START_BUTTON)
+        self.button_rect = self.button_image.get_rect()
+        self.button_rect.x = 155
+        self.button_rect.y = 547
+
+    def setupCards(self, card_list):
+        self.card_list = []
+        x = PANEL_X_START - PANEL_X_INTERNAL
+        y = PANEL_Y_START + 43 - PANEL_Y_INTERNAL
+        for i, index in enumerate(card_list):
+            if i % 8 == 0:
+                x = PANEL_X_START - PANEL_X_INTERNAL
+                y += PANEL_Y_INTERNAL
+            x += PANEL_X_INTERNAL
+            self.card_list.append(Card(x, y, index, 0.75))
+
+    def checkCardClick(self, mouse_pos):
+        delete_card = None
+        for card in self.selected_cards:
+            if delete_card: # when delete a card, move right cards to left
+                card.rect.x -= 55
+            elif card.checkMouseClick(mouse_pos):
+                self.deleteCard(card.name_index)
+                delete_card = card
+
+        if delete_card:
+            self.selected_cards.remove(delete_card)
+            self.selected_num -= 1
+
+        if self.selected_num == CARD_LIST_NUM:
+            return
+
+        for card in self.card_list:
+            if card.checkMouseClick(mouse_pos):
+                if card.canSelect():
+                    self.addCard(card)
+                break
+
+        
+        self.card_start_x = self.rect.x + 8
+        self.card_end_x = self.rect.right - 5
+        self.card_pool = card_pool
+        self.card_list = []
+        self.create_timer = -c.MOVEBAR_CARD_FRESH_TIME
+
+    def loadFrame(self, name):
+        frame = tool.GFX[name]
+        rect = frame.get_rect()
+        frame_rect = (rect.x, rect.y, rect.w, rect.h)
+
+        self.image = tool.get_image(tool.GFX[name], *frame_rect, c.WHITE, 1)
+
+    def createCard(self):
+        if len(self.card_list) > 0 and self.card_list[-1].rect.right > self.card_end_x:
+            return False
+        x = self.card_end_x
+        y = 6
+        index = random.randint(0, len(self.card_pool) - 1)
+        card_index = self.card_pool[index]
+        card_name = card_name_list[card_index] + '_move'
+        plant_name = plant_name_list[card_index]
+        self.card_list.append(MoveCard(x, y, card_name, plant_name))
+        return True
+
+    def update(self, current_time):
+        self.current_time = current_time
+        left_x = self.card_start_x
+        for card in self.card_list:
+            card.update(left_x, self.current_time)
+            left_x = card.rect.right + 1
+
+        if(self.current_time - self.create_timer) > c.MOVEBAR_CARD_FRESH_TIME:
+            if self.createCard():
+                self.create_timer = self.current_time
+
+    def checkCardClick(self, mouse_pos):
+        result = None
+        for index, card in enumerate(self.card_list):
+            if card.checkMouseClick(mouse_pos):
+                result = (card.plant_name, card)
+                break
+        return result
+    
+    def checkMenuBarClick(self, mouse_pos):
+        x, y = mouse_pos
+        if(x >= self.rect.x and x <= self.rect.right and
+           y >= self.rect.y and y <= self.rect.bottom):
+            return True
+        return False
+
+    def deleateCard(self, card):
+        self.card_list.remove(card)
+
+    def draw(self, surface):
+        surface.blit(self.image, self.rect)
+        for card in self.card_list:
+            card.draw(surface)
