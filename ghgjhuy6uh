@@ -1,0 +1,48 @@
+<?php  
+error_reporting(0);  
+highlight_file(__FILE__);  
+  
+class AAA  
+{  
+    public $s;  
+    public $a;  
+    public function __toString()  
+    {  
+        echo "you get 2 A <br>";        
+        $p = $this->a;  
+        return $this->s->$p;  
+    }  
+}  
+  
+class BBB  
+{  
+    public $c;  
+    public $d;  
+    public function __get($name)  
+    {  
+        echo "you get 2 B <br>";        
+        $a=$_POST['a'];        
+        $b=$_POST;        
+        $c=$this->c;        
+        $d=$this->d;  
+        if (isset($b['a'])) {  
+            unset($b['a']);  
+        }        call_user_func($a,$b)($c)($d);  
+    }  
+}  
+  
+class CCC  
+{  
+    public $c;  
+  
+    public function __destruct()  
+    {  
+        echo "you get 2 C <br>";  
+        echo $this->c;  
+    }  
+}  
+  
+  
+if(isset($_GET['xy'])) {    $a = unserialize($_GET['xy']);  
+    throw new Exception("noooooob!!!");  
+}
