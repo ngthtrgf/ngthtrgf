@@ -1,0 +1,16 @@
+ <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
+        <button id="loginButton"  class="btn btn-primary  btn-block">登录
+        </button>
+
+</div>
+    <script>
+        $("#id").keyup(
+            function () {
+                if(isNaN($("#id").val())){
+                    $("#info").text("提示:账号只能为数字");
+                }
+                else {
+                    $("#info").text("");
+                }
+            }
+        )
