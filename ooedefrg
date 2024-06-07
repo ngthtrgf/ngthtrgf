@@ -1,0 +1,15 @@
+ for (var i = 0, length = waves.length; i < length; i++) {
+      var wave = waves[i];
+      wave.sprite.position.x = wave.x;
+      wave.sprite.position.y = wave.y;
+      wave.vx = Math.cos(wave.angle) * wave.speed;
+      wave.vy = Math.sin(wave.angle) * wave.speed;
+      wave.x += wave.vx;
+      wave.y += wave.vy;
+      wave.speed *= 1.01;
+      if (wave.x > w + 200 || wave.x < -200 || wave.y > h + 200) {
+        wave.x = w / 2;
+        wave.y = h / 2;
+        wave.speed = 0.01 + Math.random() / 10;
+      }
+    }
