@@ -1,0 +1,14 @@
+<!--pages/productDetail/index.wxml-->
+<!-- 商品轮播图 -->
+<view class="product-banner">
+  <swiper class="product-banner" bindchange='onSlideChange' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}"
+    interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+    <block wx:for="{{productBanner}}" wx:key="id">
+      <swiper-item>
+        <view>
+          <image src="{{item}}" class="product-banner" alt="" lazy-load="true" />
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
