@@ -1,0 +1,33 @@
+import requests
+from bs4 import BeautifulSoup
+ 
+# 基本的请求头
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+    'Referer': 'https://www.damai.cn/',
+    'Cookie': '你的大麦网登录cookie'
+}
+ 
+# 登录URL
+login_url = 'https://www.damai.cn/login'
+# 抢票URL（示例）
+ticket_url = 'https://www.damai.cn/some-ticket-page'
+ 
+# 发送登录请求
+session = requests.Session()
+login_data = {
+    'username': '你的账号',
+    'password': '你的密码'
+}
+response = session.post(login_url, data=login_data, headers=headers)
+if '登录成功' in response.text:
+    print('登录成功')
+ 
+# 发送抢票请求
+ticket_data = {
+    'concert_id': '演唱会ID',
+    'ticket_type': '票档'
+}
+response = session.post(ticket_url, data=ticket_data, headers=headers)
+if '订单创建成功' in response.text:
+    print('抢票成功')
