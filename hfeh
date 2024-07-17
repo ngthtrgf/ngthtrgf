@@ -1,0 +1,45 @@
+    def exists_left(self, i, j, num):  
+        """检查 (i, j) 左边是否至少有 {num} 个连续的相同动物。"""  
+        for t in range(0, num):  
+            if self.animal[i][j] != self.animal[i][j - t] or self.animal[i][j] < 0:  
+                return False  
+        return True  
+    def exists_right(self, i, j, num):  
+        """检查 (i, j) 右边是否至少有 {num} 个连续的相同动物。"""  
+        for t in range(0, num):  
+            if self.animal[i][j] != self.animal[i][j + t] or self.animal[i][j] < 0:  
+                return False  
+        return True  
+    def exists_up(self, i, j, num):  
+        """检查 (i, j) 上方是否至少有 {num} 个连续的相同动物。"""  
+        for t in range(0, num):  
+            if self.animal[i][j] != self.animal[i - t][j] or self.animal[i][j] < 0:  
+                return False  
+        return True  
+    def exists_down(self, i, j, num):  
+        """检查 (i, j) 下方是否至少有 {num} 个连续的相同动物。"""  
+        for t in range(0, num):  
+            if self.animal[i][j] != self.animal[i + t][j] or self.animal[i][j] < 0:  
+                return False  
+        return True  
+    def change_left(self, i, j, num):  
+        """改变动物的左侧。"""  
+        self.value_swapped = True  
+        self.score += num  
+        for k in range(0, int(num)):  
+            self.animal[i][j - k] = -2  
+  
+    def change_right(self, i, j, num):  
+        """改变动物的右侧。"""  
+        self.value_swapped = True  
+        self.score += num  
+        for k in range(0, num):  
+            self.animal[i][j + k] = -2  
+  
+    def change_up(self, i, j, num):  
+        """改变动物上方。"""  
+        self.value_swapped = True  
+        self.score += num  
+        for k in range(0, num):  
+            self.animal[i - k][j] = -2  
+  
