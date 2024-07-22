@@ -1,0 +1,20 @@
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+ 
+@WebServlet("/setcookie")
+public class SetCookieServlet extends HttpServlet {
+    //期望通过doGet方法，把一个自定义的cookie数据返回到浏览器这边。
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Cookie cookie=new Cookie("date","2023-09-23");
+        resp.addCookie(cookie);
+        Cookie cookie1=new Cookie("time","19:55");
+        resp.addCookie(cookie1);
+        resp.getWriter().write("setCookie ok");
+    }
+}g
